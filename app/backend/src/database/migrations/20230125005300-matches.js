@@ -1,5 +1,4 @@
-'use strict';
-
+/* eslint-disable max-lines-per-function */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('matches', {
@@ -7,47 +6,47 @@ module.exports = {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
       },
-      homeTeam: {
+      homeTeamId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'teams',
-          key: 'id'
+          key: 'id',
         },
-        field: 'home_team',
+        field: 'home_team_id',
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
       },
       homeTeamGoals: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        field: 'home_team_goals'
+        field: 'home_team_goals',
       },
-      awayTeam: {
+      awayTeamId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'teams',
-          key: 'id'
+          key: 'id',
         },
-        field: 'away_team',
+        field: 'away_team_id',
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
       },
       awayTeamGoals: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        field: 'away_team_goals'
+        field: 'away_team_goals',
       },
       inProgress: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        field: 'in_progress'
-      }
-    })
+        field: 'in_progress',
+      },
+    });
   },
 
-  down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('matches')
-  }
+  down: async (queryInterface, _Sequelize) => {
+    await queryInterface.dropTable('matches');
+  },
 };
