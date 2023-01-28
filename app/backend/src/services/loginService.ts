@@ -8,4 +8,9 @@ const loginService = async ({ email, password }: Login) => {
   return user;
 };
 
-export default loginService;
+const roleService = async (userId: number) => {
+  const userResult = await User.findByPk(userId);
+  return userResult;
+};
+
+export { loginService, roleService };

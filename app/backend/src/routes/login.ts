@@ -1,6 +1,7 @@
 import * as express from 'express';
-import login from '../controller/loginController';
+import { login, verifyRole } from '../controller/loginController';
 import mid from '../middleware/validate.login';
+import { validateToken } from '../auth';
 
 class LoginRoute {
   public route: express.Router;
@@ -8,6 +9,7 @@ class LoginRoute {
   constructor() {
     this.route = express.Router();
 
+    this.route.get('/login/validate', validateToken, verifyRole);
     this.route.post('/login', mid, login);
   }
 }

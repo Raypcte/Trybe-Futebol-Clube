@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { User } from '../interfaces';
 import { createToken } from '../auth';
-import loginService from '../services/loginService';
+import { loginService, roleService } from '../services/loginService';
 
 const login = async (req: Request | any, res: Response) => {
   const { email, password } = req.body;
@@ -19,4 +19,12 @@ const login = async (req: Request | any, res: Response) => {
   return res.status(200).json({ token });
 };
 
-export default login;
+const verifyRole = async (req: Request | any, res: Response) => {
+  const { userId } = req;
+  const user: User | null = await roleService(userId);
+  return res.status(200).json({
+    role: user?.role,
+  });
+};
+
+export { login, verifyRole };
