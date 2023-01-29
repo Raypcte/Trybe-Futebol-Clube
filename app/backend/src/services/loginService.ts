@@ -1,9 +1,8 @@
-import { Login } from '../interfaces';
 import User from '../database/models/User';
 
-const loginService = async ({ email, password }: Login) => {
+const loginService = async (email: string) => {
   const user = await User.findOne({
-    where: { email, password },
+    where: { email },
   });
   return user;
 };
