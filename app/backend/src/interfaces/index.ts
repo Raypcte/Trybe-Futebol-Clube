@@ -15,3 +15,11 @@ export interface User {
   email: string;
   password: string;
 }
+
+export interface Match {
+  id?: number;
+  homeTeamId: number;
+  awayTeamId: number;
+  homeTeamGoals: number;
+  awayTeamGoals: number;
+}

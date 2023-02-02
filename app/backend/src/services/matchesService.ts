@@ -1,5 +1,6 @@
 import Team from '../database/models/Team';
 import Matches from '../database/models/Match';
+import { Match } from '../interfaces';
 
 const getMatchesServices = async () => {
   const matches = await Matches.findAll({
@@ -17,4 +18,15 @@ const getMatchesServices = async () => {
   return matches;
 };
 
-export default getMatchesServices;
+const createMatchesServices = async (body: Match | any) => {
+  const resultMatch = await Matches.create(body);
+
+  return resultMatch;
+};
+
+//   const mat1 =  async () => {
+//     const endMatch = await this.model.update()};
+
+// };
+
+export { getMatchesServices, createMatchesServices };

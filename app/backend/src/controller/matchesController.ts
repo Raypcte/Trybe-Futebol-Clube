@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import getMatchesServices from '../services/matchesService';
+import { getMatchesServices, createMatchesServices } from '../services/matchesService';
 
 const getMatches = async (req: Request, res: Response) => {
   const { inProgress }: any = req.query;
@@ -16,4 +16,20 @@ const getMatches = async (req: Request, res: Response) => {
   return res.status(200).json(matches);
 };
 
-export default getMatches;
+const createMatches = async (req: Request, res: Response) => {
+  const { body } = req;
+  const matchProgress = await createMatchesServices({ body, inProgress: true });
+
+  return res.status(201).json(matchProgress);
+};
+
+// const i = async finishMatch(req: Request, res: Response) {
+//   const { i } = req.params;
+
+//   await this.service.finishMatch(i);
+
+//   return res.status(200).json({ message: 'Finished' });
+
+// };
+
+export { getMatches, createMatches };

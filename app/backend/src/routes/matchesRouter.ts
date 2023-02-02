@@ -1,5 +1,6 @@
 import * as express from 'express';
-import getMatches from '../controller/matchesController';
+import { getMatches, createMatches } from '../controller/matchesController';
+import { validateToken } from '../auth';
 
 class MatchesRouter {
   public route: express.Router;
@@ -8,6 +9,7 @@ class MatchesRouter {
     this.route = express.Router();
 
     this.route.get('/matches', getMatches);
+    this.route.post('/matches', validateToken, createMatches);
   }
 }
 
