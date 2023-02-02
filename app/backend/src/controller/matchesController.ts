@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { teamsIdService } from 'src/services/teamsService';
 import { getMatchesServices, createMatchesServices, finishMatch } from '../services/matchesService';
 
 const getMatches = async (req: Request, res: Response) => {
@@ -22,6 +23,12 @@ const createMatches = async (req: Request, res: Response) => {
     return res.status(422).json({
       message: 'It is not possible to create a match with two equal teams' });
   }
+  const team1 = await teamsIdService(body.homeTeamId);
+  const team2 = await teamsIdService(body.awayTeamId);
+  if (!team1 || !team2) {
+    return res.status(404).json({ message: 'There is no team with such id!' });
+  }
+
   const matchProgress = await createMatchesServices({ body, inProgress: true });
 
   return res.status(201).json(matchProgress);
