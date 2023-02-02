@@ -30,7 +30,7 @@ const createMatches = async (req: Request, res: Response) => {
     return res.status(404).json({ message: 'There is no team with such id!' });
   }
 
-  const matchProgress = await createMatchesServices({ body, inProgress: true });
+  const matchProgress = await createMatchesServices({ ...body, inProgress: true });
 
   return res.status(201).json(matchProgress);
 };
