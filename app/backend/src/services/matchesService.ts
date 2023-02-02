@@ -32,4 +32,13 @@ const finishMatch = async (id: string) => {
   return endMatch;
 };
 
-export { getMatchesServices, createMatchesServices, finishMatch };
+const editMatch = async (id: string, body: any) => {
+  const endMatch = await Matches.update(
+    { homeTeamGoals: body.homeTeamGoals,
+      awayTeamGoals: body.awayTeamGoals },
+    { where: { id } },
+  );
+  return endMatch;
+};
+
+export { getMatchesServices, createMatchesServices, finishMatch, editMatch };

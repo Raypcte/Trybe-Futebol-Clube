@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import { teamsIdService } from 'src/services/teamsService';
-import { getMatchesServices, createMatchesServices, finishMatch } from '../services/matchesService';
+import { teamsIdService } from '../services/teamsService';
+import { getMatchesServices, createMatchesServices,
+  finishMatch, editMatch } from '../services/matchesService';
 
 const getMatches = async (req: Request, res: Response) => {
   const { inProgress }: any = req.query;
@@ -42,4 +43,12 @@ const updateMatches = async (req: Request, res: Response) => {
   return res.status(200).json({ message: 'Finished' });
 };
 
-export { getMatches, createMatches, updateMatches };
+const updateMatchesId = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { body } = req;
+  await editMatch(id, body);
+
+  return res.status(200).json({ message: 'Finished' });
+};
+
+export { getMatches, createMatches, updateMatches, updateMatchesId };
