@@ -18,6 +18,10 @@ const getMatches = async (req: Request, res: Response) => {
 
 const createMatches = async (req: Request, res: Response) => {
   const { body } = req;
+  if (body.homeTeamId === body.awayTeamId) {
+    return res.status(422).json({
+      message: 'It is not possible to create a match with two equal teams' });
+  }
   const matchProgress = await createMatchesServices({ body, inProgress: true });
 
   return res.status(201).json(matchProgress);
