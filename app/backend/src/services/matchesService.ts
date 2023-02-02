@@ -24,9 +24,12 @@ const createMatchesServices = async (body: Match | any) => {
   return resultMatch;
 };
 
-//   const mat1 =  async () => {
-//     const endMatch = await this.model.update()};
+const finishMatch = async (id: string) => {
+  const endMatch = await Matches.update(
+    { inProgress: false },
+    { where: { id } },
+  );
+  return endMatch;
+};
 
-// };
-
-export { getMatchesServices, createMatchesServices };
+export { getMatchesServices, createMatchesServices, finishMatch };

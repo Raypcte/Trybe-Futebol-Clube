@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getMatchesServices, createMatchesServices } from '../services/matchesService';
+import { getMatchesServices, createMatchesServices, finishMatch } from '../services/matchesService';
 
 const getMatches = async (req: Request, res: Response) => {
   const { inProgress }: any = req.query;
@@ -23,13 +23,12 @@ const createMatches = async (req: Request, res: Response) => {
   return res.status(201).json(matchProgress);
 };
 
-// const i = async finishMatch(req: Request, res: Response) {
-//   const { i } = req.params;
+const updateMatches = async (req: Request, res: Response) => {
+  const { id } = req.params;
 
-//   await this.service.finishMatch(i);
+  await finishMatch(id);
 
-//   return res.status(200).json({ message: 'Finished' });
+  return res.status(200).json({ message: 'Finished' });
+};
 
-// };
-
-export { getMatches, createMatches };
+export { getMatches, createMatches, updateMatches };
