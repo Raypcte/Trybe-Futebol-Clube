@@ -51,7 +51,11 @@ const getLeaderboarder = async () => {
     return transform(i, result, match);
   }));
 
-  return rating;
+  return rating.sort((a, b) => b.totalPoints - a.totalPoints
+  || b.totalVictories - a.totalVictories
+  || b.goalsBalance - a.goalsBalance
+  || b.goalsFavor - a.goalsFavor
+  || b.goalsOwn - a.goalsOwn);
 };
 
 export default getLeaderboarder;
