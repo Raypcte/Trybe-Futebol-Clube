@@ -1,10 +1,11 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# README 
+
+- A importância aqui é entender como se dá a integração entre front e back-end (com banco de dados), além de entender como essa configuração pode ser feita utilizando o Docker Compose!
+
+# Skills
+
+- A realização da dockerização dos apps, network, volume e compose;
+- A modelagem de dados com MySQL através do Sequelize;
+- A criação e associação de tabelas usando models do sequelize;
+- A construção de uma API REST com endpoints para consumir os models criados;
+- A construção de um CRUD com TypeScript, utilizando ORM;
